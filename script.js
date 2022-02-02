@@ -1,13 +1,36 @@
 const numbersContainer = document.querySelector(".numbers-container");
 let resultElement = document.querySelector(".result");
 let detailsElement = document.querySelector(".details");
-
-
-details = '';
+const clearBtn = document.querySelector('.clear');
+const deleteBtn = document.querySelector('.delete');
 let previousNum = "";
 let nums = [];
 let sign = "";
 let lastOperation;
+
+
+function reset() {
+    nums = [];
+    lastOperation = null;
+    previousNum = "";
+    resultElement.textContent =  '';
+    detailsElement.innerHTML = '&nbsp;'
+}
+
+clearBtn.addEventListener('click', function() {
+    reset();
+})
+
+function deleteNum() {
+ 
+    previousNum =  previousNum.split('').splice(0,previousNum.length - 1).join('');
+    resultElement.textContent = previousNum;
+}
+
+deleteBtn.addEventListener('click', function() {
+    deleteNum();
+})
+
 
 
 numbersContainer.addEventListener("click", function (e) {
